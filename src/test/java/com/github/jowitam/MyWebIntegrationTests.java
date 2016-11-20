@@ -26,9 +26,10 @@ public class MyWebIntegrationTests {
 
 //dostepnosc Dla Wybranego Zakresu Dat
     @Test
-    public void shouldBeAvailable() {
+    public void shouldBeAvailable() throws JSONException {
         String body = this.restTemplate.getForObject("/booking?from=15062016&to=16062016", String.class);
-        assertThat(body).isEqualTo("{\"available\":true}");
+        //assertThat(body).isEqualTo("{\"available\":true}");
+        JSONAssert.assertEquals("{\"available\":true}", body, false);
     }
 
 //tworzenie Rezerwacji
@@ -71,7 +72,7 @@ public class MyWebIntegrationTests {
 
         String body = this.restTemplate.getForObject("/booking?from=16082116&to=18082116", String.class);
 
-        JSONAssert.assertEquals("{\"available\": false}", body, false);
+        JSONAssert.assertEquals("{\"available\":false}", body, false);
     }
 
 
