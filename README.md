@@ -2,7 +2,7 @@
 
 Prosta usługa sieciowa obsługująca rezerwację pokoju hotelowego. Umożliwia sprawdzenie dostępności pokoju hotelowego oraz dodanie nowych rezerwacji dla wybranego zakresu dat.
 
-Proste API Restowe - usługa sieciowa w języku Java z wykorzystaniem systemu zarządzania bazą danych. omunikacja odbywa się w formacie JSON. Usługa oczekuje że daty przekazane jako parametry będą w formacie ddMMyyyy.
+Proste API Restowe - usługa sieciowa w języku Java z wykorzystaniem systemu zarządzania bazą danych. Komunikacja odbywa się w formacie JSON. Usługa oczekuje że daty przekazane jako parametry będą w formacie ddMMyyyy.
 Dane dotyczące rezerwacji są zapisywane i odczytywane z bazy danych.
 
 ## Instrukcja użytkowania

@@ -1,7 +1,9 @@
 package com.github.jowitam;
 
+import org.json.JSONException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.skyscreamer.jsonassert.JSONAssert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
@@ -12,7 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.assertj.core.api.Assertions.assertThat;
-
+import static org.junit.Assert.assertEquals;
 
 
 @RunWith(SpringRunner.class)
@@ -61,7 +63,7 @@ public class MyWebIntegrationTests {
 
     //po sprawdzeniu dostępności nowa rezerwacja na ten sam termin Niedostępna
     @Test
-    public void shouldReturnThatRoomIsBookAfterMakingReservation() {
+    public void shouldReturnThatRoomIsBookAfterMakingReservation() throws JSONException {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity<String> entity = new HttpEntity<String>("{\"from\": \"16082116\", \"to\": \"18082116\"}", headers);
@@ -69,8 +71,10 @@ public class MyWebIntegrationTests {
 
         String body = this.restTemplate.getForObject("/booking?from=16082116&to=18082116", String.class);
 
-        assertThat(body).isEqualTo("{\"available\":false}");
+        JSONAssert.assertEquals("{\"available\": false}", body, false);
     }
+
+
 
     //odwrotne podanie zakresu dat zwraca błąd
     @Test
